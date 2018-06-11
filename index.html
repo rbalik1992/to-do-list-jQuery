@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Note List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                    <label for="set">Add note</label>
+                    <input type="text" id="set" class="form-control" value="" placeholder="">
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" id="top"/>
+                        Add to top
+                    </label>
+                </div>
+                <button type="submit" class="add-note btn btn-primary">Add item</button>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <p class="lead">New Note</p>
+                <ul class="note-list"></ul>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="js/src/jquery-1.9.1.min.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/src/bootstrap.min.js"></script>
+</body>
+</html>

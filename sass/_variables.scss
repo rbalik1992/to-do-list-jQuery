@@ -1,0 +1,46 @@
+// BOOTSTRAP OVERRIDES
+// ========  CUSTOM VARIABLES  ========== //
+
+
+
+// Colors
+$black: #000000;
+$white: #ffffff;
+$blue: #002664;
+$green:#00A7B8;
+$grey:  #527D97;
+$title-color-bright:$white;
+$title-color-dark:$blue;
+$main-text-color: $black;
+$btn-background:$green;
+$sectio-color-bg:$grey;
+
+//Font-size
+$large-font-size:42px;
+$middle-font-size:30px;
+$simple-font-size:18px;
+$small-font-size:15px;
+
+// HEIGHT AND DIMENSIONS
+$small-spacer: 10px;
+$medium-spacer: 15px;
+$large-spacer: 20px;
+$bigger-spacer: 30px;
+$long-spacer: 60px;
+//
+// TYPOGRAPHY
+//
+
+//Fonts
+$weight-large: 900;
+$weight-bold: 700;
+$weight-regular: 400;
+$weight-light: 100;
+
+
+
+
+//animation
+$transition: all .5s ease;
+$menu-animation-duration: 400ms;
+$menu-animation-timing:   ease-out;

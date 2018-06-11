@@ -1,0 +1,53 @@
+/**
+ * Form styles.
+ */
+
+// Checkboxes / radio buttons.
+.checkbox, .radio {
+  // Remove top/bottom margins when in table context, because this is most
+  // likely a tableselect checkbox element.
+  table &.form-no-label {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+}
+
+.form-group {
+  .form-control {
+    color: $main-blue;
+    @include placeholder($main-blue);
+    &.form-color {
+      min-width: 50px;
+    }
+
+  }
+}
+// Use CSS/SVG image for required mark.
+// @see https://www.drupal.org/node/2152217
+// @see https://www.drupal.org/node/2274631
+.form-required:after {
+  background-image: none;
+  background-size: 10px 7px;
+  font-family: sans-serif;
+  content: "\002A";
+  display: inline-block;
+  line-height: 1;
+  height: 7px;
+  width: 10px;
+  font-size: $font-size-base*1.4;
+}
+
+// Form action buttons.
+.form-actions {
+  .btn, .btn-group {
+    margin-right: 10px;
+  }
+  .btn-group {
+    .btn {
+      margin-right: 0;
+    }
+  }
+}
+
+
+

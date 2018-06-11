@@ -1,0 +1,28 @@
+main{
+  padding-top: 60px;
+  .note-list{
+    li{
+      position: relative;
+      padding: 7px;
+      padding-right: 90px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid transparent;
+      border-top: 1px solid transparent;
+      &:hover{
+        border-bottom: 1px solid lightgray;
+        border-top: 1px solid lightgray;
+      }
+      .actions{
+        position: absolute;
+        top:7px;
+        right: 0;
+        button{
+          margin-right: 10px;
+          &:last-child{
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}

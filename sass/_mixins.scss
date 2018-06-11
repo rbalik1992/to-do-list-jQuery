@@ -1,0 +1,259 @@
+/* MIXINS */
+
+// Different devices resolutions
+// Different devices resolutions
+@mixin respond-to($media) {
+  @if $media==old-phones {
+    @media only screen and (max-width: 320px) {
+      @content;
+    }
+    //480px
+  } @else if $media==phones {
+    @media only screen and (max-width: $screen-xs) {
+      @content;
+    }
+    //768px
+  } @else if $media==phones-landscape {
+    @media only screen and (max-width: $screen-xs-max) {
+      @content;
+    }
+  } @else if $media==nexus7 {
+    @media only screen and (min-width: 600px) and (max-width: 960px) {
+      @content;
+    }
+    //991px
+  } @else if $media==tablets-portrait {
+    @media only screen and (max-width: $screen-sm-max) {
+      @content;
+    }
+  } @else if $media==tablets-landscape {
+    @media only screen and (max-width: $screen-md-max) {
+      @content;
+    }
+  } @else if $media==desktops {
+    @media only screen and (max-width: 1440px) {
+      @content;
+    }
+  } @else if $media==desktops-large {
+    @media only screen and (max-width: 1920px) {
+      @content;
+    }
+  } @else if $media==desktops-xlarge {
+    @media only screen and (max-width: 2560px) {
+      @content;
+    }
+  }
+}
+
+/*
+Mixin for responsive (relative) font-sizes depending on the screen size using media queries.
+This is width based, but you can easily adjust it for more complex, or simple, checking.
+Set the base as you max size, then I divided everything into tenths of the base.
+To use, simply include the mixin, passing it the font-size that you'd want to see at 100%.
+This should then scale nicely along in tenths. If you need more detail, just add more elements to the level list.
+Oh, and this requires SASS 3.2 (and higher?)
+See the compiled (debugged) code below.
+*/
+@mixin responsive-font($fontsize) {
+  $base: 2560px;
+  @media (min-width: $base) {
+    font-size: $fontsize;
+  }
+  @each $factor in 0.9, 0.8, 0.7, 0.6, 0.5 {
+    @media (max-width: $base * $factor) {
+      font-size: $fontsize * $factor;
+    }
+  }
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
+}
+
+@mixin responsive-dimensions($property, $dimensions) {
+  $base: 2560px;
+  @media (min-width: $base) {
+    #{$property}: $dimensions;
+  }
+  @each $factor in 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3 {
+    @media (max-width: $base * $factor) {
+      #{$property}: $dimensions * $factor;
+    }
+  }
+}
+
+// Container Widths
+@mixin bs-container() {
+  width: $container-lg;
+  max-width: $container-lg;
+  @include respond-to(tablets-landscape) {
+    width: $container-md;
+    max-width: $container-md;
+    @include respond-to(tablets-portrait) {
+      max-width: 100%;
+      width: 100%;
+      padding-left: $regular-spacer;
+      padding-right: $regular-spacer;
+    }
+  }
+}
+
+@mixin placeholder($color, $size:"", $weight: "400") {
+  &::-webkit-input-placeholder {
+    color: $color;
+    @if $size != "" {
+      font-size: $size;
+      font-weight: $weight;
+    }
+  }
+  &:-moz-placeholder {
+    color: $color;
+    @if $size != "" {
+      font-size: $size;
+      font-weight: $weight;
+    }
+  }
+  &::-moz-placeholder {
+    color: $color;
+    @if $size != "" {
+      font-size: $size;
+      font-weight: $weight;
+    }
+  }
+  &:-ms-input-placeholder {
+    color: $color;
+    @if $size != "" {
+      font-size: $size;
+      font-weight: $weight;
+    }
+  }
+}
+
+@mixin transition($value) {
+  -webkit-transition: $value;
+  -moz-transition: $value;
+  -ms-transition: $value;
+  -o-transition: $value;
+  transition: $value;
+}
+
+@mixin fadeIn($duration, $delay) {
+  opacity: 0;
+  /* make things invisible upon start */
+  animation: fadeIn ease-in 1;
+  -webkit-animation-fill-mode: forwards;
+  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  animation-duration: $duration;
+  animation-delay: $delay;
+}
+
+@mixin rotate($value: 0) {
+  -webkit-transform: rotate($value);
+  -moz-transform: rotate($value);
+  -ms-transform: rotate($value);
+  -o-transform: rotate($value);
+  transform: rotate($value);
+}
+
+@mixin border-radius($value) {
+  -webkit-border-radius: $value;
+  -moz-border-radius: $value;
+  border-radius: $value;
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset:"") {
+  -webkit-box-shadow: $top $left $blur $color #{$inset};
+  -moz-box-shadow: $top $left $blur $color #{$inset};
+  box-shadow: $top $left $blur $color #{$inset};
+}
+
+@mixin design-container() {
+  width: 1054px !important;
+  display: block;
+  position: relative;
+  @include respond-to(tablets-landscape) {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+}
+@mixin main-text-light(){
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
+@mixin main-text-regular(){
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+@mixin main-text-bold(){
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+@mixin blue-title(){
+  @include main-text-light();
+  letter-spacing: 0.5px;
+  color: $title-color-dark;
+  font-size: 30px;
+  margin-top: 0;
+  line-height: 36px;
+  @include respond-to(phones-landscape) {
+    font-size: 22px;
+    line-height: 28px;
+  }
+}
+@mixin simple-text(){
+  @include main-text-light();
+  font-size: 18px;
+  color: $main-text-color;
+  letter-spacing: 0.5px;
+  line-height: 28px;
+  margin-bottom: 30px;
+  @include respond-to(phones-landscape) {
+    font-size: 16px;
+    line-height: 23px;
+  }
+}
+@mixin btn-green-download(){
+  overflow: hidden;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: $btn-background;
+  color: $title-color-bright;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  padding: 9px 20px;
+  display: inline-block;
+  @include main-text-bold();
+  transition: .3s ease;
+  border:1px solid transparent;
+  &:hover{
+    border:1px solid #999999;
+    box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.6);
+    &:before{
+      background: url("../images/download-white.png") no-repeat;
+      background-size: 18px;
+      background-position: 0 3px;
+    }
+  }
+  &:active{
+    box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.5);
+  }
+  @include respond-to(phones-landscape) {
+    font-size: 13px;
+    line-height: 22px;
+  }
+  @include respond-to(phones){
+    display: block;
+  }
+  &:before{
+    content: '';
+    background: url("../images/pdfwhite.png") no-repeat;
+    width: 17px; // Here was 16px width
+    height: 24px;
+    display: block;
+    background-size: cover;
+    margin-right: 10px;
+    float: left;
+  }
+}
